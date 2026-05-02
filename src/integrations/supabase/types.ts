@@ -14,16 +14,111 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      app_settings: {
+        Row: {
+          id: number
+          tanggal_pengumuman: string
+          updated_at: string
+        }
+        Insert: {
+          id?: number
+          tanggal_pengumuman?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: number
+          tanggal_pengumuman?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      siswa: {
+        Row: {
+          catatan: string | null
+          created_at: string
+          id: string
+          jurusan: string
+          kelas: string
+          nama: string
+          nisn: string
+          status_lulus: boolean
+          tanggal_lahir: string
+          updated_at: string
+        }
+        Insert: {
+          catatan?: string | null
+          created_at?: string
+          id?: string
+          jurusan: string
+          kelas: string
+          nama: string
+          nisn: string
+          status_lulus?: boolean
+          tanggal_lahir: string
+          updated_at?: string
+        }
+        Update: {
+          catatan?: string | null
+          created_at?: string
+          id?: string
+          jurusan?: string
+          kelas?: string
+          nama?: string
+          nisn?: string
+          status_lulus?: boolean
+          tanggal_lahir?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      cek_kelulusan: {
+        Args: { _nisn: string; _tanggal_lahir: string }
+        Returns: {
+          catatan: string
+          jurusan: string
+          kelas: string
+          nama: string
+          nisn: string
+          status_lulus: boolean
+          tanggal_lahir: string
+        }[]
+      }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +245,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
