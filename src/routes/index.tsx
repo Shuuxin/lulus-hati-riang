@@ -236,11 +236,4 @@ function ResultCard({ result, onReset }: { result: Result; onReset: () => void }
   );
 }
 
-function Field({ label, value }: { label: string; value: string }) {
-  return (
-    <div>
-      <dt className="text-xs uppercase tracking-wide text-muted-foreground">{label}</dt>
-      <dd className="font-semibold text-foreground mt-0.5">{value}</dd>
-    </div>
-  );
-}
+
